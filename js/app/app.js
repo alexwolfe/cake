@@ -37,6 +37,8 @@
 			this.on('favorites', this.createMyFavorites, this);
 			this.on('search', this.searchRecipes, this);
 			this.listenTo(this.collections.recipes, 'all', this.updateStage);
+
+			this.authorizeUser();
 		},
 
 		render: function() {
@@ -129,9 +131,7 @@
 			}.bind(this));
 		},
 
-		authorizeUser: function(e) {
-			e.preventDefault();
-
+		authorizeUser: function() {
 			//USE SIMPLE AUTH
 			this.auth = new FirebaseSimpleLogin(this.firebase, function(error, user) {
 
@@ -150,6 +150,10 @@
 				}
 			}.bind(this));
 
+		},
+
+		login: function(e) {
+			e.preventDefault();
 			this.auth.login('facebook');
 		},
 
