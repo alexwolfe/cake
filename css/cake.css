@@ -606,3 +606,20 @@ body {
   color: #75cbd9;
   text-align: center;
 }
+
+/* line 63, ../scss/cake.scss */
+.blank-state-title {
+  font-family: "Clicker Script", cursive;
+  font-size: 200px;
+  margin: 100px 0px 0px 0px;
+  color: #75cbd9;
+  text-align: center;
+}
+
+/* line 70, ../scss/cake.scss */
+h5 {
+  font-family: "Clicker Script", cursive;
+  font-size: 30px;
+  color: #75cbd9;
+  text-align: center;
+}

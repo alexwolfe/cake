@@ -38,6 +38,7 @@
         search: function(term) {
             this.setPage('search');
             this.controller.trigger('search', term);
+            this.controller.currentSearch = term;
         },
 
         setPage: function(page) {

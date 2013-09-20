@@ -12,10 +12,10 @@
                 ownerid: null,
                 name: '',
                 subtitle: '',
-                ingredients: [{description: 'enter an ingrediant...'}], //[{description: 'enter ingredients'}, {description: 'enter ingredients'}, {description: 'enter ingredients'}],
+                ingredients: [{description: ''}], //[{description: 'enter ingredients'}, {description: 'enter ingredients'}, {description: 'enter ingredients'}],
                 directions: '',
-                labels: [{name: 'food'}], //[{name: ''}],
-                likes: [{user: '123'}], //[id, id, id]
+                labels: [], //[{name: ''}],
+                likes: [], //[id, id, id]
                 image: ''
             };
         }
