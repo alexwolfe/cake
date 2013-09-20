@@ -1,0 +1,182 @@
+@import "compass";
+
+
+////////////////////////////////////////////////////
+// RECIPE CARD /////////////////////////////////////
+////////////////////////////////////////////////////
+.recipe {
+	@include box-shadow(0px 1px 2px rgba(0, 0, 0, .3));
+	@include border-radius(5px);
+	background: #FFF;
+	margin: 10px;
+	width: 400px;
+	height: 235px;
+	//width: 460px;
+	//height: 285px;
+	float: left;
+	position: relative;
+
+	.edit {
+		@include opacity(.8);
+		display: none;
+		position: absolute;
+		bottom: 10px;
+		right: 10px;
+		z-index: 1;
+	}
+
+	&:hover {
+		.edit {
+			display: block;
+		}
+	}
+
+	figure {
+		background-color: $color-light;
+		background-repeat: none;
+		background-position:center;
+		background-size:  auto 100%;
+		width: 235px;
+		height: 235px;
+		overflow: hidden;
+		float: left;
+
+		img {
+			@include border-radius(5px 0px 0px 5px);
+			max-height: 100%;
+		}
+	}
+
+	.details {
+		@include box-sizing(border-box);
+		float: right;
+		width: 165px;
+		height: 235px;
+		padding: 20px;
+		overflow: hidden;
+
+		h3 {
+			font-family: $logo-font;
+			color: $color-primary;
+			font-size: 20px;
+			margin-bottom: 20px;
+		}
+
+		h4 {
+			font-size: 12px;
+			font-weight: bold;
+			color: $color-text;
+			margin-bottom: 10px;
+		}
+
+		p {
+			color: $color-text;
+			font-size: 16px;
+			line-height: $baseline;
+		}
+
+		ul {
+			font-size: 10px;
+			color: $color-text;
+
+			li {
+				margin-bottom: 10px;
+				line-height: 18px;
+			}
+		}
+	}
+
+	&.recipe-full {
+		@include box-shadow(0px 5px 15px rgba(0, 0, 0, .3));
+		@include border-radius(5px);
+		background: #FFF;
+		position: fixed;
+		top: 10%;
+		left: 50%;
+		z-index: 1200;
+		margin: 0px 0px 0px -450px;
+		width: 980px;
+		height: 600px;
+		float: none;
+
+		.edit {
+			bottom: auto;
+			right: 10px;
+			top: 10px;
+			z-index: 1;
+		}
+
+		figure {
+			@include border-radius(5px 0px 0px 5px);
+			width: 319px;
+			height: 600px;
+			overflow: hidden;
+			float: left;
+			position: relative;
+			border-right: 1px solid #DDFAFF;
+
+			img {
+				@include border-radius(5px 0px 0px 5px);
+				max-height: 100%;
+				min-height: 100%;
+			}
+		}
+
+		.details {
+			@include box-sizing(border-box);
+			float: right;
+			width: 660px;
+			height: 600px;
+			padding: 40px;
+			position: relative;
+
+			.directions {
+				@include box-sizing(border-box);
+				float: right;
+				width: 290px;
+				padding-left: 20px;
+			}
+
+			.ingredients {
+				@include box-sizing(border-box);
+				float: left;
+				width: 290px;
+				padding-right: 20px;
+			}
+
+			h3 {
+				font-size: 50px;
+				margin-bottom: 30px;
+			}
+
+			h4 {
+				font-size: 18px;
+				font-weight: bold;
+				color: $color-text;
+				margin-bottom: 10px;
+			}
+
+			p {
+				color: $color-text;
+				font-size: 12px;
+				line-height: $baseline - 6;
+				margin-bottom: 20px;
+			}
+
+			ul {
+				font-size: 12px;
+				color: $color-text;
+				list-style-type: disc;
+				margin-left: 25px;
+				margin-bottom: 20px;
+
+				li {
+					margin-bottom: 5px;
+					line-height: $baseline - 6;
+				}
+			}
+
+		}
+
+	}
+}

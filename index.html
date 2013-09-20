@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/cake.css">
+    <link href='http://fonts.googleapis.com/css?family=Clicker+Script' rel='stylesheet' type='text/css'>
+
+    <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+</head>
+<body>
+    <!--[if lt IE 7]>
+    <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- ########################################################## -->
+    <!-- ## APP ############################################# -->
+    <!-- ########################################################## -->
+
+    <div id="app">
+
+
+        <nav id="main-nav" class="clearfix">
+            <h1>Cake</h1>
+
+            <section class="controls">
+                <h2>The easiest ways to create &amp; share recipes</h2>
+                <a href="#" id="login" class="button button-primary button-rounded button-large">Sign In with Facebook</a>
+            </section>
+        </nav>
+        <section id="stage">
+            <!-- CONTENT GOES HERE -->
+        </section>
+    </div>
+
+
+    <!-- ########################################################## -->
+    <!-- ## TEMPLATES ############################################# -->
+    <!-- ########################################################## -->
+
+    <!-- RECIPE CARD -->
+    <script type="text/template" id="template_recipe">
+        <figure style="background-image: url({{image}});"></figure>
+
+        <section class="details">
+            <h3>{{name}}</h3>
+
+            <h4>Ingredients</h4>
+            <ul>
+                {{#ingredients}}
+                <li>{{description}}</li>
+                {{/ingredients}}
+            </ul>
+        </section>
+    </script>
+
+
+
+    <!-- NAV LOGGED OUT -->
+    <script type="text/template" id="template_nav_logged_out">
+        <h2>The easiest ways to create &amp; share recipes</h2>
+        <a href="#" id="login" class="button button-primary button-rounded button-large">Sign In with Facebook</a>
+    </script>
+
+
+    <!-- NAV LOGGED IN -->
+    <script type="text/template" id="template_nav_logged_in">
+
+        <section id="add-recipe" class="animated wobble">
+            <a class="button button-primary button-rounded"  href="#"><i class="icon-plus"></i> Add A Recipe</a>
+        </section>
+
+
+        <input type="text" name="search" id="search" placeholder="Search for recipes..." />
+
+        <ul>
+            <li>
+                <a class="favorites" href="#">My Favorites</a>
+            <li>
+            <li>
+                <a class="my-recipes" href="#">My Recipes</a>
+            <li>
+        </ul>
+    </script>
+
+
+    <!-- RECIPE FULL -->
+    <script type="text/template" id="template_recipe_full">
+        <figure style="background-image: url({{image}});"></figure>
+
+        <section class="details">
+            <h3>{{name}}</h3>
+
+            <div>
+                <section class="ingredients">
+                    <h4>Ingredients</h4>
+
+                    <ul>
+                        {{#ingredients}}
+                        <li>{{description}}</li>
+                        {{/ingredients}}
+                    </ul>
+                </section>
+
+                <section class="directions">
+                    <h4>Directions</h4>
+                    <p>{{directions}}</p>
+                </section>
+
+                <div class="clear"></div>
+            </div>
+            <p>
+                {{#labels}}
+                <a href="#" data-name="{{name}}" class="label button button-tiny button-pill button-flat-caution">{{name}}</a>
+                {{/labels}}
+            </p>
+        </section>
+    </script>
+
+
+
+    <!-- RECIPE FORM -->
+    <script type="text/template" id="template_recipe_form">
+        <div class="overlay "></div>
+        <form class="animated bounceInDown">
+            <figure id="dropzone" style="background-image: url({{image}});">
+                <section class="blank-state">
+                    <i class="icon-picture"></i>
+                </section>
+            </figure>
+
+            <section class="details">
+                <ul>
+                    <li>
+                        <label for="name">Name your recipe</label>
+                        <input type="text" value="{{name}}" name="name" />
+                    </li>
+
+                    <li>
+                        <label for="ingredients">Ingredients</label>
+                        <div id="ingredient-list">
+                        {{#ingredients}}
+                            <input type="text" value="{{description}}" name="ingredients" class="ingredient"/>
+                        {{/ingredients}}
+                        </div>
+
+                        <a href="#" class="add-ingredient button button-tiny button-action button-rounded"><i class="icon-plus"></i></a>
+                    </li>
+                    <li>
+                        <label for="directions">Directions</label>
+                        <textarea name="directions">{{directions}}</textarea>
+                    </li>
+
+                    <li>
+                        <label for="labels">Labels</label>
+                        <input type="text" value="{{mylabels}}" name="labels" />
+                    </li>
+                </ul>
+
+                <footer>
+                    <input name="submit" type="submit" value="Save Recipe" class="button button-large button-flat-primary button-rounded"/>
+                    <a class="cancel button button-large button-flat button-rounded" href="#">Cancel</a>
+                </footer>
+            </section>
+        </form>
+    </script>
+
+
+
+
+    <!-- ########################################################## -->
+    <!-- ## JAVASCRIPT ############################################ -->
+    <!-- ########################################################## -->
+
+    <script type='text/javascript' src='https://cdn.firebase.com/v0/firebase.js'></script>
+    <script type='text/javascript' src='https://cdn.firebase.com/v0/firebase-simple-login.js'></script>
+    <script src="js/vendor/jquery-1.10.2.min.js"></script>
+    <script src="js/vendor/mustache.js"></script>
+    <script src="js/vendor/jquery.validate.min.js"></script>
+    <script src="js/vendor/underscore-min.js"></script>
+    <script src="js/vendor/backbone-min.js"></script>
+    <script src="js/vendor/backbone-firebase.js"></script>
+    <script src="js/app/cake.js"></script>
+    <script src="js/app/router.js"></script>
+    <script src="js/app/models/user.js"></script>
+    <script src="js/app/models/recipe.js"></script>
+    <script src="js/app/collections/users.js"></script>
+    <script src="js/app/collections/recipes.js"></script>
+    <script src="js/app/views/nav.js"></script>
+    <script src="js/app/views/recipe_form.js"></script>
+    <script src="js/app/views/recipe_full.js"></script>
+    <script src="js/app/views/recipe.js"></script>
+    <script src="js/app/app.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var app = {
+                views: {},
+                collections: {},
+                models: {},
+                firebase: null,
+                router: null
+            };
+
+            //START APP & ROUTER
+            app.views.controller = new Cake.Views.Controller();
+            app.router = new Cake.Router(app.views.controller);
+            Backbone.history.start({pushState:true});
+
+        });
+    </script>
+
+    <!-- GOOGLE ANALYTICS -->
+    <script>
+    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src='//www.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+</body>
+</html>
