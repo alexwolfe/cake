@@ -71,36 +71,50 @@
 
 		createMyRecipes: function(username) {
 			var myRecipes = this.collections.recipes.where({ownerid: this.models.user.id});
+
 			var stage = this.$('#stage');
-			stage.html('<h1> Recipes created by ' + username + '</h1>');
+			stage.html('<h1 class="main-title"> Recipes created by ' + username + '</h1>');
 
 			_.each(myRecipes, function(model) {
-				var recipe = new Cake.Views.Recipe({model: model});
+				var recipe = new Cake.Views.Recipe({
+					model: model,
+					collection: this.collections.recipes,
+					user: this.models.user
+				});
 				stage.append(recipe.el);
-			});
+			}.bind(this));
 		},
 
 		createMyFavorites: function(username) {
 			var myRecipes = this.collections.recipes.where({ownerid: this.models.user.id});
 			var stage = this.$('#stage');
-			stage.html('<h1>' + username + '</h1>');
+			stage.html('<h1 class="main-title">' + username + ' Favorites</h1>');
 
 			_.each(myRecipes, function(model) {
-				var recipe = new Cake.Views.Recipe({model: model});
+				var recipe = new Cake.Views.Recipe({
+					model: model,
+					collection: this.collections.recipes,
+					user: this.models.user
+				});
 				stage.append(recipe.el);
-			});
+			}.bind(this));
 		},
 
 		searchRecipes: function(term) {
 			var recipes = this.collections.recipes.search(term);
 
 			var stage = this.$('#stage');
-			stage.html('<h1> Results for ' + term + '</h1>');
+			stage.html('<h1 class="main-title"> Results for ' + term + '</h1>');
 
 			_.each(recipes, function(model) {
-				var recipe = new Cake.Views.Recipe({model: model});
+				var recipe = new Cake.Views.Recipe({
+					model: model,
+					collection: this.collections.recipes,
+					user: this.models.user
+				});
+
 				stage.append(recipe.el);
-			});
+			}.bind(this));
 		},
 
 		authorizeUser: function(e) {

@@ -50,3 +50,12 @@ body {
     -ms-filter: blur(10px);
     filter: blur(10px);
 }
+
+.main-title {
+	font-family: $logo-font;
+	font-size: 40px;
+	height: 40px;
+	margin: 20px;
+	color: $color-primary;
+	text-align: center;
+}

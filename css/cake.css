@@ -596,3 +596,13 @@ body {
   -ms-filter: blur(10px);
   filter: blur(10px);
 }
+
+/* line 54, ../scss/cake.scss */
+.main-title {
+  font-family: "Clicker Script", cursive;
+  font-size: 40px;
+  height: 40px;
+  margin: 20px;
+  color: #75cbd9;
+  text-align: center;
+}
