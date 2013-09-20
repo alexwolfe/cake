@@ -14,7 +14,7 @@
 				var labels = model.get('labels');
 				var filterLabels = _.where(labels, {name: term});
 
-				return filterLabels.length;
+				return (filterLabels.length > 0);
 			});
 
 			return models;

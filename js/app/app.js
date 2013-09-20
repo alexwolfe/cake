@@ -10,6 +10,7 @@
 		models: {},
 		router: null,
 		currentPage: 'home',
+		currentSearch: '',
 		el: $('#app'),
 
 		events: {
@@ -35,7 +36,7 @@
 			this.on('recipes', this.createMyRecipes, this);
 			this.on('favorites', this.createMyFavorites, this);
 			this.on('search', this.searchRecipes, this);
-			this.listenTo(this.collections.recipes, 'all', this.createAllRecipes);
+			this.listenTo(this.collections.recipes, 'all', this.updateStage);
 		},
 
 		render: function() {
@@ -52,21 +53,32 @@
 			});
 		},
 
-		createAllRecipes: function() {
-			if(this.currentPage === 'home') {
-				var stage = this.$('#stage');
-				stage.html('');
+		updateStage: function() {
+			var username = this.models.user.get('username');
 
-				_.each(this.collections.recipes.models, function(model) {
-					var recipe = new Cake.Views.Recipe({
-						model: model,
-						collection: this.collections.recipes,
-						user: this.models.user
-					});
-
-					stage.append(recipe.el);
-				}.bind(this));
+			switch(this.currentPage) {
+				case 'home': this.createAllRecipes(); break;
+				case 'recipes': this.createMyRecipes(username); break;
+				case 'favorites': this.createMyFavorites(username); break;
+				case 'search': this.searchRecipes(this.currentSearch); break;
+				default: this.createAllRecipes(); break;
 			}
+
+		},
+
+		createAllRecipes: function() {
+			var stage = this.$('#stage');
+			stage.html('');
+
+			_.each(this.collections.recipes.models, function(model) {
+				var recipe = new Cake.Views.Recipe({
+					model: model,
+					collection: this.collections.recipes,
+					user: this.models.user
+				});
+
+				stage.append(recipe.el);
+			}.bind(this));
 		},
 
 		createMyRecipes: function(username) {
