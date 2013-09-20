@@ -14,7 +14,7 @@
 		el: $('#app'),
 
 		events: {
-			'click #login': 'authorizeUser',
+			'click #login': 'login',
 			'click #add-recipe': 'addRecipe'
 		},
 
